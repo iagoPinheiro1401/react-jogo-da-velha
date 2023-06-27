@@ -1,9 +1,13 @@
 
 import Header from "../header/Header"
+import Game from "../game/Game"
 
 function GamePage() {
     return(
-        <Header />
+      <div className="container">
+          <Header />
+          <Game />
+      </div>
     )
 }
 
