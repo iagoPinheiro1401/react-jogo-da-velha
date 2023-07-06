@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import styles from './Game.module.css'
 
 import GameOption from "../gameOptions/GameOptions"
-import Icon from '../Icon/Icon'
+import GameInfo from '../gameinfo/GameInfo'
 
 const winenerTable = [
     [0, 1, 2],
@@ -34,9 +34,13 @@ const verifyGamer = () => {
         const sum = values.reduce((sum, value) => sum + value)
         if (sum == 3 || sum === -3) {
             setWinner(sum / 3)
-            console.log("vencedor :", sum/3)
     }
     })
+}
+
+const reset = () => {
+    setGameState(Array(9).fill(0))
+    setWinner(0)
 }
 
 useEffect(() => {
@@ -57,15 +61,11 @@ useEffect(() => {
                     )
                 }
             </div>
-            <div className={styles.proximoAjogar}>
-                <h4>Próximo a jogar:</h4>
-                    {
-                        currentPlayer === 1 && <Icon iconName="circle" />
-                    }
-                    {
-                        currentPlayer === -1 && <Icon iconName="x" />
-                    }
-            </div>
+            <GameInfo 
+               currentPlayer={currentPlayer}
+               winner={winner}
+               onReset={reset}
+            />
        </div>
     )
 }
